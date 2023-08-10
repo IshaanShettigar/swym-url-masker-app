@@ -150,3 +150,46 @@ fetchBtn.addEventListener("click", async () => {
 
 
 /* What about the single text box to check just one url */
+document.addEventListener("DOMContentLoaded", () => {
+    const singleUrlInput = document.getElementById("single-url");
+    const singleUrlButton = document.getElementById("single-url-button");
+
+    singleUrlButton.addEventListener("click", async () => {
+        const inputUrl = singleUrlInput.value;
+
+        if (isValidURL(inputUrl)) {
+            const requestBody = {
+                urls: [inputUrl]
+            };
+
+            try {
+                const response = await fetch("http://localhost:5000/sendURLs", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (response.ok) {
+                    console.log("URL sent and processed successfully");
+                } else {
+                    console.error("Error sending URL");
+                }
+            } catch (error) {
+                console.error("Error sending URL:", error);
+            }
+        } else {
+            console.error("Invalid URL");
+        }
+    });
+});
+
+function isValidURL(url) {
+    try {
+        new URL(url);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
