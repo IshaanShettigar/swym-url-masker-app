@@ -12,6 +12,13 @@ I am building a URL Masking App.
 4. This should start the server, then navigate to the browser and type in `http://localhost:5000/`. This should display the index.html file.
 5. Before trying to download the CSV, make sure that you click on fetch.
 
+### Correct CSV Format
+* There should be no `https://` preceding the URL's entered in the .csv file.
+* There is a sample image here.
+  
+![image](https://github.com/IshaanShettigar/swym-url-masker-app/assets/77607172/73628f04-5ddf-4baf-bf9c-938e7ba447fa)
+
+
 ### Data Flow 
 1. The user uploads a CSV of the urls. Each url is in the same column but on a new line.
 2. In javascript I take the CSV, parse it and then send it to the backend as an array in req.body.
