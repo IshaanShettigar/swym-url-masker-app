@@ -18,7 +18,10 @@ I am building a URL Masking App.
 3. The URL's are taken one by one in the server and then a mask is generated and stored in the mongoDB database.
 4. When the user clicks on the fetch button the data is fetched from the mongodb data base and displayed in a table.
 5. When the user clicks on the download button it downloads as a CSV.
-   
+
+![image](https://github.com/IshaanShettigar/swym-url-masker-app/assets/77607172/91b25c0e-737c-4737-a1c0-e9f7b8a39f1b)
+
+
 
 ### Sample Screenshot
 
