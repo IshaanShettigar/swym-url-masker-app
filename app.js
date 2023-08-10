@@ -19,7 +19,7 @@ app.post('/sendURLs', async (req, res) => {
     let newURLs = {
     }
     for (let i = 0; i < urls.length; i++) {
-        newURLs[urls[i]] = `slug${i}`
+        newURLs[urls[i]] = crypto.randomUUID() /*`slug${i}`*/
         try {
             await Main.create({ original: urls[i], new_url: newURLs[urls[i]], clicks: 0 })
         }

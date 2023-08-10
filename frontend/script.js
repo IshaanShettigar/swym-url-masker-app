@@ -88,7 +88,7 @@ function populateTable(data) {
         const newUrlLink = document.createElement("a");
         newUrlLink.href = item.new_url;
         newUrlLink.target = "_blank"; // Open in new tab
-        newUrlLink.textContent = `${item.new_url}`;
+        newUrlLink.textContent = `${window.location.origin}/${item.new_url}`;
 
 
         originalCell.appendChild(originalLink);
@@ -98,6 +98,30 @@ function populateTable(data) {
         console.log(item.new_url, item.original);
     });
 }
+
+
+document.getElementById('download').addEventListener('click', () => {
+    const table = document.getElementById('dashboard-table');
+    const rows = table.querySelectorAll('tbody tr');
+
+    let csvContent = 'data:text/csv;charset=utf-8,';
+    csvContent += 'Original URL,Masked,Clicks\n'; // Add header row
+
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const rowData = Array.from(cells).map(cell => cell.textContent).join(',');
+        csvContent += rowData + '\n';
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'table.csv');
+    document.body.appendChild(link);
+    link.click();
+});
+
+
 
 
 
