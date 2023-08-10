@@ -63,13 +63,10 @@ app.get('/:slug', async (req, res) => {
     // check if slug in database else return error
     console.log("SLUG", slug);
     try {
-        let original_url = await Main.findOne({ new_url: slug })
-        console.log(original_url.clicks);
-        await Main.updateOne({ new_url: slug, clicks: original_url.clicks + 1 })
-        // console.log(new URL(original_url));
-        res.redirect(`https://${original_url.original}`)
-
-        // res.redirect(new URL(original_url))
+        let data = await Main.findOne({ new_url: slug })
+        console.log(data.clicks);
+        const updatedData = await Main.updateOne({ new_url: slug }, { $set: { clicks: data.clicks + 1 } })
+        res.redirect(`https://${data.original}`)
     }
     catch {
         console.log("Error retreving url")
