@@ -8,8 +8,9 @@ I am building a URL Masking App.
 ### How to start the project? 
 1. Clone the project using `git clone`
 2. Open it in VS code or any other editor and run `npm install` in the terminal (to install the dependencies).
-3. This should start the server, then navigate to the browser and type in `http://localhost:5000/`. This should display the index.html file.
-4. 
+3. Type `npm start` in the terminal to start the server.
+4. This should start the server, then navigate to the browser and type in `http://localhost:5000/`. This should display the index.html file.
+5. Before trying to download the CSV, make sure that you click on fetch.
 
 ### Data Flow 
 1. The user uploads a CSV of the urls. Each url is in the same column but on a new line.
