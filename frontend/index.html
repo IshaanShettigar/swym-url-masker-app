@@ -11,10 +11,15 @@
 <body>
     <div class="container">
         <h1>URL Masker App</h1>
+        <div class="input-box-section">
+            <h2>Try it out for one URL</h2>
+            <input type="text" id="single-url">
+            <button id="single-url-button">Generate new URL</button>
+        </div>
         <div class="upload-section">
             <h2>Upload CSV File</h2>
             <input type="file" id="csv-file" accept=".csv">
-            <button onclick="handleFileUpload()">Upload</button>
+            <button id="upload-csv-btn">Upload</button>
         </div>
         <div class="dashboard-section">
             <h2>Dashboard</h2>
@@ -30,7 +35,9 @@
                     <!-- Rows will be dynamically added here -->
                 </tbody>
             </table>
+            <button id="fetch-data">Fetch Data</button>
         </div>
+
     </div>
     <script src="script.js"></script>
 </body>
