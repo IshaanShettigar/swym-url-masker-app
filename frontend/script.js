@@ -53,6 +53,9 @@ function readCSV() {
                 // Display the error message in an alert box
                 alert("An error occurred: " + errorResponse.message);
             }
+            else {
+                alert("Upload Successful, click on fetch to view the new URL's")
+            }
         }
         catch (error) {
             console.log(error);
