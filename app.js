@@ -14,7 +14,7 @@ app.use(express.static('./frontend'));
 
 
 app.post('/sendURLs', async (req, res) => {
-    await Main.deleteMany({})
+    // await Main.deleteMany({})
     let urls = req.body.urls;
     let newURLs = {
     }
