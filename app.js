@@ -66,7 +66,12 @@ app.get('/:slug', async (req, res) => {
         let data = await Main.findOne({ new_url: slug })
         console.log(data.clicks);
         const updatedData = await Main.updateOne({ new_url: slug }, { $set: { clicks: data.clicks + 1 } })
-        res.redirect(`https://${data.original}`)
+        if (data.original.startsWith("https://")) {
+            res.redirect(`${data.original}`)
+        }
+        else {
+            res.redirect(`https://${data.original}`)
+        }
     }
     catch {
         console.log("Error retreving url")

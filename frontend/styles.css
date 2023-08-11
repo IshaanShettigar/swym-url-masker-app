@@ -5,7 +5,8 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
+    /* width: 800px; */
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
