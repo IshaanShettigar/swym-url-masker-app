@@ -45,7 +45,12 @@ function readCSV() {
         var newRowData = []
         for (let i = 0; i < rowData.length; i++) {
             rowData[i] = rowData[i].trim()
+
+
             if (rowData[i] != "") {
+                if (!rowData[i].startsWith("https://")) {
+                    rowData[i] = "https://" + rowData[i]
+                }
                 newRowData.push(rowData[i])
             }
         }
@@ -143,9 +148,6 @@ document.getElementById('download').addEventListener('click', () => {
 });
 
 
-
-
-
 const fetchBtn = document.getElementById('fetch-data')
 
 fetchBtn.addEventListener("click", async () => {
@@ -203,6 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } else {
             console.error("Invalid URL");
+            alert("Invalid URL")
+            // trigger some UI element 
         }
     });
 });

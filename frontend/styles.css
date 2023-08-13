@@ -42,7 +42,17 @@ th {
 }
 
 
+#single-url {
+    padding: 3px 2px;
+    font-size: medium;
+}
+
+
 /* GREEN BUTTONS */
+#single-url-button {
+    margin-left: 15px;
+}
+
 #single-url-button,
 #upload-csv-btn,
 #download {
@@ -90,7 +100,8 @@ th {
 }
 
 #fetch-data,
-#logout-btn {
+#logout-btn,
+input::file-selector-button {
     align-items: center;
     border: 0;
     border-radius: 6px;
@@ -116,7 +127,8 @@ th {
     vertical-align: middle;
 }
 
-#fetch-data {
+#fetch-data,
+input::file-selector-button {
     background-color: #0A66C2;
 }
 
@@ -131,7 +143,9 @@ th {
 }
 
 #fetch-data:hover,
-#fetch-data:focus {
+#fetch-data:focus,
+input::file-selector-button:hover,
+input::file-selector-button:focus {
     background-color: #1055a9;
     color: #ffffff;
 }
