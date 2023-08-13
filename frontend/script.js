@@ -1,6 +1,23 @@
+SERVER_URL = "http://localhost:5000"
+let jwtToken = localStorage.getItem("url-masker-token")
+
+window.onload = function () {
+    // logic to redirect if not logged in 
+    if (jwtToken == null) {
+        redirectURL("log-in.html")
+    }
+}
+
+const redirectURL = function (newPathName = "index.html") {
+    const newA = document.createElement('a')
+    newA.href = `/${newPathName}`
+    newA.click()
+    newA.remove()
+}
+
+
 const fileUploadBtn = document.getElementById('upload-csv-btn')
 const fileUpload = document.getElementById('csv-file')
-
 
 /**
  * Need to strip the data as well. Take care of valid and invalid urls via a regex. If there were some invalid urls then tell the
@@ -43,7 +60,8 @@ function readCSV() {
                     method: "POST",
                     body: JSON.stringify(body),
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${jwtToken}`
                     }
                 });
 
@@ -134,6 +152,9 @@ fetchBtn.addEventListener("click", async () => {
     try {
         const response = await fetch("http://localhost:5000/urls", {
             method: "GET",
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            }
         });
 
         if (response.ok) {
@@ -166,7 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const response = await fetch("http://localhost:5000/sendURLs", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        'Authorization': `Bearer ${jwtToken}`
                     },
                     body: JSON.stringify(requestBody)
                 });
@@ -193,3 +215,13 @@ function isValidURL(url) {
         return false;
     }
 }
+
+
+const logout = () => {
+    localStorage.removeItem("url-masker-token")
+    console.log("Removed token from local storage");
+    alert("Logging out now")
+    redirectURL("log-in.html")
+}
+
+document.getElementById("logout-btn").addEventListener("click", logout)

@@ -1,48 +1,57 @@
 require('dotenv').config();
 const express = require("express")
-const Main = require('./models/mainSchema')
+const Link = require('./models/mainSchema')
+const User = require("./models/user")
 const connectDB = require("./db/connect");
+const authRouter = require("./routers/authRouter")
+const authMiddleware = require("./middleware/authMiddleware")
+const crypto = require('crypto');
+
 const app = express()
-const cors = require('cors');
-const mongoose = require('mongoose')
-app.use(cors());
+
+
 app.use(express.json())
-const crypto = require('crypto')
 
+// // adding logic to redirect if already logged in 
+// app.use((req, res, next) => {
+//     const token = req.headers.authorization;
+//     if (token) {
+//         try {
+//             const decodedToken = jwt.verify(token, 'your-secret-key');
+//             return res.redirect('/index.html');
+//         } catch (err) {
+//             // Token is invalid or expired, continue to next middleware
+//         }
+//     }
+//     next();
+// })
 
-app.use(express.static('./frontend'));
+app.use(express.static('./frontend/'));
 
+app.use("/auth", authRouter)
 
-app.post('/sendURLs', async (req, res) => {
-    // await Main.deleteMany({})
+app.post('/sendURLs', authMiddleware, async (req, res) => {
     let urls = req.body.urls;
     let newURLs = {
     }
     for (let i = 0; i < urls.length; i++) {
-        newURLs[urls[i]] = crypto.randomUUID() /*`slug${i}`*/
+        newURLs[urls[i]] = crypto.randomUUID()
         try {
-            await Main.create({ original: urls[i], new_url: newURLs[urls[i]], clicks: 0 })
+            await Link.create({ original: urls[i], new_url: newURLs[urls[i]], clicks: 0, userId: req.user.id })
         }
         catch (error) {
-            // if (error instanceof mongoose.Error.ValidationError) {
-            //     // Handle validation errors
-            //     return res.status(400).json({ error: 'Validation error', details: error.errors });
-            // } else if (error instanceof mongoose.Error.MongoServerError) {
-            //     // Handle MongoServerError
-            //     return res.status(500).json({ error: 'MongoDB server error', details: error.message });
-            // }
             console.log(error);
-            return res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ error: 'Internal server error' });
         }
-
     }
-    res.status(200).json(newURLs)
+
+    res.status(200).json({ "user": req.user, "links": newURLs })
 })
 
-app.get('/urls', async (req, res) => {
+app.get('/urls', authMiddleware, async (req, res) => {
     try {
         console.log("------------FETCHING-------------");
-        let data = await Main.find({})
+        let data = await Link.find({})
         const filteredData = data.map(item => ({
             original: item.original,
             new_url: item.new_url,
@@ -63,9 +72,8 @@ app.get('/:slug', async (req, res) => {
     // check if slug in database else return error
     console.log("SLUG", slug);
     try {
-        let data = await Main.findOne({ new_url: slug })
-        console.log(data.clicks);
-        const updatedData = await Main.updateOne({ new_url: slug }, { $set: { clicks: data.clicks + 1 } })
+        let data = await Link.findOne({ new_url: slug })
+        const updatedData = await Link.updateOne({ new_url: slug }, { $set: { clicks: data.clicks + 1 } })
         if (data.original.startsWith("https://")) {
             res.redirect(`${data.original}`)
         }
@@ -78,14 +86,6 @@ app.get('/:slug', async (req, res) => {
         res.status(404).send("URL NOT IN DATABASE")
     }
 })
-
-
-
-// app.get('/', (req, res) => {
-//     console.log(crypto.randomUUID());
-// })
-
-
 
 
 const port = process.env.PORT || 5000

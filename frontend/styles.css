@@ -19,8 +19,10 @@ body {
     margin-bottom: 20px;
 }
 
-.input-box-section {}
-
+.title-section {
+    display: flex;
+    justify-content: space-between;
+}
 
 
 table {
@@ -77,7 +79,7 @@ th {
 #upload-csv-btn:hover,
 #single-url-button:hover,
 #download:hover {
-    background-color: #2c974b;
+    background-color: #2d954a;
 }
 
 #single-url-button:focus,
@@ -87,14 +89,55 @@ th {
     outline: none;
 }
 
-/* .button-3:disabled {
-    background-color: #94d3a2;
-    border-color: rgba(27, 31, 35, .1);
-    color: rgba(255, 255, 255, .8);
-    cursor: default;
-} */
+#fetch-data,
+#logout-btn {
+    align-items: center;
+    border: 0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 14px;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    justify-content: center;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+}
 
-/* .button-3:active {
-    background-color: #298e46;
-    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
-} */
+#fetch-data {
+    background-color: #0A66C2;
+}
+
+#logout-btn {
+    background-color: #c82828;
+}
+
+#logout-btn:hover,
+#logout-btn:focus {
+    background-color: #930b0b;
+    color: #ffffff;
+}
+
+#fetch-data:hover,
+#fetch-data:focus {
+    background-color: #1055a9;
+    color: #ffffff;
+}
+
+.bottom-btns {
+    margin: 15px 0 0 0;
+    display: flex;
+    gap: 20px;
+}

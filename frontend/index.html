@@ -10,7 +10,12 @@
 
 <body>
     <div class="container">
-        <h1>URL Masker App</h1>
+        <div class="title-section">
+            <h1>URL Masker App</h1>
+            <div>
+                <button id="logout-btn">Log Out </button>
+            </div>
+        </div>
         <div class="input-box-section">
             <h2>Try it out for one URL</h2>
             <input type="text" id="single-url">
@@ -35,8 +40,10 @@
                     <!-- Rows will be dynamically added here -->
                 </tbody>
             </table>
-            <button id="fetch-data">Fetch Data</button>
-            <button id="download">Download CSV</button>
+            <div class="bottom-btns">
+                <button id="fetch-data">Fetch Data</button>
+                <button id="download">Download CSV</button>
+            </div>
         </div>
 
     </div>
