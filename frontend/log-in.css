@@ -16,7 +16,7 @@
 main {
     width: 100%;
     height: 100vh;
-    /* background-image: url("./images/plant-bg.jpg"); */
+    background-image: url("./images/DALL·E\ 2023-08-13\ 22.18.20\ -\ Aesthetic\,\ minimalistic\ keyboard\ and\ coffee\,\ top\ view.png");
     background-size: cover;
 
     position: relative;
@@ -118,8 +118,14 @@ a:hover::before {
 }
 
 .help {
-    font-size: medium;
-    position: absolute;
-    margin-top: 650px;
-    margin-left: 650px;
+    margin-top: 50px;
+}
+
+.submit {
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.submit:hover {
+    background-color: #078f59;
 }
