@@ -6,7 +6,8 @@ const connectDB = require("./db/connect");
 const authRouter = require("./routers/authRouter")
 const authMiddleware = require("./middleware/authMiddleware")
 const crypto = require('crypto');
-
+const bcrypt = require('bcryptjs');
+const { log } = require('console');
 const app = express()
 
 
@@ -93,11 +94,14 @@ const port = process.env.PORT || 5000
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
+        const salt = await bcrypt.genSalt(10);
+        const hashedPwd = await bcrypt.hash("pes12345", salt)
+        const user = await User.create({ email: "ishaanshettigar@gmai.com", password: hashedPwd })
         app.listen(port, () => {
             console.log("Server listening on port ", port);
         })
     }
-    catch {
+    catch (error) {
         console.log(error)
     }
 }

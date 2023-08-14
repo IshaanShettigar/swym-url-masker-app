@@ -2,7 +2,6 @@ const SERVER_URL = "http://localhost:5000"
 
 window.onload = function () {
     let jwtToken = localStorage.getItem("jwtToken")
-    // let jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZDhjNjEyMjMwYTFlZjM2ZTg5MzY0YyIsImVtYWlsIjoiaXNoYWFuc2hldHRpZ2FyQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFdwVzhhWmNzR3hkQ0lacy9YZWlITS4wckhUbWc5VDZJZmlnb0d4SzZ0RUFXMC9pRE5teW5lIiwiaWF0IjoxNjkxOTI4NDQyfQ.z4Gu2bb3gZhoKN4nf_Wi2KfyHSHjry-LxCC2GIVDE40"
     // logic to redirect if already logged in 
     if (jwtToken != null) {
         // verify if the token is valid and then redirect to main page
