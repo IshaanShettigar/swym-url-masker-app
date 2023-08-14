@@ -12,12 +12,6 @@ I am building a URL Masking App.
 4. This should start the server, then navigate to the browser and type in `http://localhost:5000/`. This should display the index.html file.
 5. Before trying to download the CSV, make sure that you click on fetch.
 
-### Correct CSV Format
-* There should be no `https://` preceding the URL's entered in the .csv file.
-* There is a sample image here.
-  
-![image](https://github.com/IshaanShettigar/swym-url-masker-app/assets/77607172/73628f04-5ddf-4baf-bf9c-938e7ba447fa)
-
 
 ### Data Flow 
 1. The user uploads a CSV of the urls. Each url is in the same column but on a new line.
@@ -30,9 +24,17 @@ I am building a URL Masking App.
 
 
 
-### Sample Screenshot
+### Sample Screenshot 
 
-![image](https://github.com/IshaanShettigar/swym-url-masker-app/assets/77607172/5af59521-ac47-43f0-b587-75f83f31e0b6)
+#### Login page 
+
+![image](https://github.com/IshaanShettigar/swym-url-masker-app/assets/77607172/c5697bd1-48bf-4b36-bb4e-9c5d7e82cba6) 
+
+#### Main page 
+![image](https://github.com/IshaanShettigar/swym-url-masker-app/assets/77607172/10045111-d43d-4d63-944e-72b5469504cb)
+
+
+
 
 
 
